@@ -12,6 +12,8 @@ var methodOverride = require('method-override')
 
 app.locals.moment = require('moment')
 
+var postRoutes = require('./routes/posts')
+
 // APP CONFIG
 // ============================================================
 mongoose.connect('mongodb://heroku_blcpvb4p:5eokppmqjl1n3vnsoq5a9d0qr9@ds117816.mlab.com:17816/heroku_blcpvb4p', { useNewUrlParser: true })
@@ -25,6 +27,8 @@ app.set('view engine', 'ejs')
 app.get('/', function (req, res) {
   res.render('index')
 })
+
+app.use('/posts', postRoutes)
 
 // LISTEN
 // ============================================================

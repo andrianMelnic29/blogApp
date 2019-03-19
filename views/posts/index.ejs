@@ -1,0 +1,16 @@
+<%include ../partials/header%>
+    <a href="/posts/new">Create a new post</a>
+    <h2>Posts</h2>
+    <% posts.forEach(function(post){ %>
+        <img src="<%=post.image%>" alt="" srcset="">
+        <a class="header" href="/posts/<%=post._id%>">
+            <%=  post.title   %>
+        </a>
+        <span>
+            <%=  post.created.toDateString()   %>
+        </span>
+        <p>
+            <%-  post.body.substring(0, 100)   %>...
+        </p>
+    <% }) %>
+<%include ../partials/footer%>

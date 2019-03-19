@@ -1,0 +1,21 @@
+<%include ../partials/header%>
+    <h1>Create a new post</h1>
+    <form class="ui form" action="/posts" method="POST">
+        <div class="field">
+            <label>Title</label>
+            <input class="form-control" type="text" placeholder="Title" name="postTitle" required>
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input class="form-control" type="text" placeholder="Image url" name="postImage">
+        </div>
+        <div class="field">
+            <label>post Content</label>
+            <textarea class="form-control" placeholder="Post content goes here" name="postBody" required></textarea>
+        </div>
+        <div class="field">
+            <button class="ui violet big basic button">Submit</button>
+        </div>
+    </form>
+
+<%include ../partials/footer%>
