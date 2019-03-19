@@ -20,16 +20,15 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
 
-
 // APP ROUTES
 // ============================================================
 app.get('/', function (req, res) {
-    res.render('index')
+  res.render('index')
 })
 
 // LISTEN
 // ============================================================
 
 app.listen(process.env.PORT, process.env.IP, function () {
-    console.log('Listening on port:' + process.env.PORT)
+  console.log('Listening on port:' + process.env.PORT)
 })
