@@ -1,16 +1,73 @@
 <%include ../partials/header%>
     <a href="/posts/new">Create a new post</a>
-    <h2>Posts</h2>
-    <% posts.forEach(function(post){ %>
-        <img src="<%=post.image%>" alt="" srcset="">
-        <a class="header" href="/posts/<%=post._id%>">
-            <%=  post.title   %>
-        </a>
-        <span>
-            <%=  post.created.toDateString()   %>
-        </span>
-        <p>
-            <%-  post.body.substring(0, 100)   %>...
-        </p>
-    <% }) %>
+    <div class="ui three column grid">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+            <div class="ui three item menu">
+                <a class="item" id="text-post-btn">Text</a>
+                <a class="item" id="image-post-btn">Image</a>
+                <a class="item" id="video-post-btn">Video</a>
+            </div>
+        </div>
+        <div class="four wide column"></div>
+        <% posts.reverse().forEach(function(post){ %>
+            <div class="four wide column"></div>
+            <div class="eight wide column">
+                <div class="ui fluid centered card">
+                    <div class="content">
+                        <div class="right floated meta">14h</div>
+                        <img class="ui avatar image" src="images/user.svg"> Andry
+                    </div>
+                    <div class="ui rounded image">
+                        <img class="ui fluid medium rounded image" src="<%=post.image%>" alt="" srcset="">
+                    </div>
+                    <div class="content">
+                        <a class="header" href="/posts/<%=post._id%>">
+                            <%=  post.title   %>
+                        </a>
+                        <p><%-  post.body.substring(0, 100)   %>...</p>
+                        <span class="right floated">
+                            <i class="heart outline like icon"></i>
+                            17 likes
+                        </span>
+                        <i class="comment icon"></i>
+                        3 comments
+                    </div>
+                    <div class="extra content">
+                        <div class="ui large transparent left icon input">
+                            <i class="heart outline icon"></i>
+                            <input type="text" placeholder="Add Comment...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="four wide column"></div>
+        <% }) %>
+    </div>
+
+    <!-- MODALS -->
+    <div class="ui modal" id="text-post-modal">
+        <div class="header">Text</div>
+        <div class="content">
+            <form action="/posts" method="POST">
+                <div class="ui form">
+                    <div class="field">
+                        <input type="text" name="postTitle" placeholder="Title">
+                    </div>
+                    <div class="field">
+                        <textarea name="postBody" placeholder="Text content here..."></textarea>
+                    </div>
+                    <div class="field">
+                        <button class="ui violet big basic button">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ui modal" id="image-post-modal">
+        <div class="header">Header</div>
+    </div>
+    <div class="ui modal" id="video-post-modal">
+        <div class="header">Header</div>
+    </div>
 <%include ../partials/footer%>
