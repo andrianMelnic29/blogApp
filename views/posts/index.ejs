@@ -16,6 +16,11 @@
                 <div class="ui fluid centered card">
                     <div class="content">
                         <div class="right floated meta">14h</div>
+                        <div class="right floated meta">
+                            <form action="/posts/<%=post._id%>?_method=DELETE" method="post">
+                                <button class="ui red basic button small">Delete</button>
+                            </form>
+                        </div>
                         <img class="ui avatar image" src="images/user.svg"> Andry
                     </div>
                     <div class="ui rounded image">

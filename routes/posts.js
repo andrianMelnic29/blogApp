@@ -39,4 +39,15 @@ router.post('/', function (req, res) {
   })
 })
 
+// DESTROY
+router.delete('/:id', function (req, res) {
+  Post.findByIdAndRemove(req.params.id, function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.redirect('/posts')
+    }
+  })
+})
+
 module.exports = router
