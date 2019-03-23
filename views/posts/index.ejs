@@ -15,12 +15,12 @@
             <div class="eight wide column">
                 <div class="ui fluid centered card">
                     <div class="content">
-                        <div class="right floated meta">14h</div>
                         <div class="right floated meta">
                             <form action="/posts/<%=post._id%>?_method=DELETE" method="post">
                                 <button class="ui red basic button small">Delete</button>
                             </form>
                         </div>
+                        <div class="right floated meta">14h</div>
                         <img class="ui avatar image" src="images/user.svg"> Andry
                     </div>
                     <div class="ui rounded image">
@@ -54,12 +54,12 @@
     <div class="ui modal" id="text-post-modal">
         <div class="header">Text</div>
         <div class="content">
-            <form action="/posts" method="POST">
+            <form action="/posts/text" method="POST">
                 <div class="ui form">
-                    <div class="field">
+                    <div class="field input">
                         <input type="text" name="postTitle" placeholder="Title">
                     </div>
-                    <div class="field">
+                    <div class="field input">
                         <textarea name="postBody" placeholder="Text content here..."></textarea>
                     </div>
                     <div class="field">
@@ -69,8 +69,71 @@
             </form>
         </div>
     </div>
+    
     <div class="ui modal" id="image-post-modal">
-        <div class="header">Header</div>
+        <div class="header">Image post</div>
+        <div class="ui placeholder segment">
+            <div class="ui two column very relaxed stackable grid">
+                <div class="column">
+                    <div class="ui big button" id="load-image-btn">
+                        Upload image
+                    </div>
+                </div>
+                <div class="middle aligned column">
+                    <div class="ui big button" id="url-image-btn">
+                        <i class="signup icon"></i>
+                        Insert from URL
+                    </div>
+                </div>
+            </div>
+            <div class="ui vertical divider">
+                Or
+            </div>
+        </div>
+    </div>
+    <div class="ui modal" id="image-post-load">
+        <div class="header">Load image</div>
+        <div class="content">
+            <form action="/posts/upload/image" method="POST" enctype="multipart/form-data">
+                <div class="ui form">
+                    <div class="field">
+                        <label>Upload image</label>
+                        <div class="ui left icon input">
+                            <input type="file" multiple accept="image/*" name="image" required>
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="field input violet">
+                        <input type="text" name="postTitle" placeholder="Title">
+                    </div>
+                    <div class="field input violet">
+                        <textarea name="postBody" placeholder="Add a caption ..."></textarea>
+                    </div>
+                    <button class="ui violet big basic button">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ui modal" id="image-post-url">
+        <div class="header">URL image</div>
+        <div class="content">
+            <form action="/posts/url/image" method="POST">
+                <div class="ui form">
+                    <div class="field">
+                        <input type="text" name="image" placeholder="URL" required>
+                    </div>
+                    <div class="field input">
+                        <input type="text" name="postTitle" placeholder="Title">
+                    </div>
+                    <div class="field input">
+                        <textarea name="postBody" placeholder="Add a caption ..."></textarea>
+                    </div>
+                    <div class="field">
+                        <button class="ui violet big basic button">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="ui modal" id="video-post-modal">
         <div class="header">Header</div>
