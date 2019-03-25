@@ -5,9 +5,6 @@ $(document).ready(function () {
   $('#image-post-btn').click(function () {
     $('#image-post-modal').modal('show')
   })
-  $('#video-post-btn').click(function () {
-    $('#video-post-modal').modal('show')
-  })
 
   $('#load-image-btn').click(function () {
     $('#image-post-load').modal('show')
@@ -15,4 +12,10 @@ $(document).ready(function () {
   $('#url-image-btn').click(function () {
     $('#image-post-url').modal('show')
   })
+  $('.post-image img')
+    .visibility({
+      type: 'image',
+      transition: 'fade in',
+      duration: 1000
+    })
 })

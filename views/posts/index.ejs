@@ -1,12 +1,10 @@
 <%include ../partials/header%>
-    <a href="/posts/new">Create a new post</a>
     <div class="ui three column grid">
         <div class="four wide column"></div>
         <div class="eight wide column">
-            <div class="ui three item menu">
-                <a class="item" id="text-post-btn">Text</a>
-                <a class="item" id="image-post-btn">Image</a>
-                <a class="item" id="video-post-btn">Video</a>
+            <div class="ui two item menu">
+                <a class="item" id="text-post-btn"><i class="pencil alternate icon"></i></a>
+                <a class="item" id="image-post-btn"><i class="image icon"></i></a>
             </div>
         </div>
         <div class="four wide column"></div>
@@ -17,14 +15,14 @@
                     <div class="content">
                         <div class="right floated meta">
                             <form action="/posts/<%=post._id%>?_method=DELETE" method="post">
-                                <button class="ui red basic button small">Delete</button>
+                                <button class="ui negative basic button icon small"><i class="trash icon"></i></button>
                             </form>
                         </div>
-                        <div class="right floated meta">14h</div>
+                        <div class="right floated meta posted-time">14h</div>
                         <img class="ui avatar image" src="images/user.svg"> Andry
                     </div>
-                    <div class="ui rounded image">
-                        <img class="ui fluid medium rounded image" src="<%=post.image%>" alt="" srcset="">
+                    <div class="ui rounded image post-image">
+                        <img class="ui fluid medium rounded image" data-src="<%=post.image%>" alt="" srcset="">
                     </div>
                     <div class="content">
                         <a class="header" href="/posts/<%=post._id%>">
@@ -50,7 +48,9 @@
         <% }) %>
     </div>
 
-    <!-- MODALS -->
+    <!-------------------------------------------- MODALS --------------------------------------->
+    <!-------------------------------------------- TEXTPOST --------------------------------------->
+
     <div class="ui modal" id="text-post-modal">
         <div class="header">Text</div>
         <div class="content">
@@ -69,7 +69,8 @@
             </form>
         </div>
     </div>
-    
+    <!-------------------------------------------- IMGPOST --------------------------------------->
+
     <div class="ui modal" id="image-post-modal">
         <div class="header">Image post</div>
         <div class="ui placeholder segment">
@@ -91,6 +92,9 @@
             </div>
         </div>
     </div>
+    
+    <!-------------------------------------------- IMGUPLOAD --------------------------------------->
+    
     <div class="ui modal" id="image-post-load">
         <div class="header">Load image</div>
         <div class="content">
@@ -114,6 +118,7 @@
             </form>
         </div>
     </div>
+    <!-------------------------------------------- IMGURL --------------------------------------->
     <div class="ui modal" id="image-post-url">
         <div class="header">URL image</div>
         <div class="content">
@@ -134,8 +139,5 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="ui modal" id="video-post-modal">
-        <div class="header">Header</div>
     </div>
 <%include ../partials/footer%>

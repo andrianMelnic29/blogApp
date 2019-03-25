@@ -85,6 +85,8 @@ router.post('/url/image', function (req, res) {
   })
 })
 
+
+
 // DESTROY
 router.delete('/:id', function (req, res) {
   Post.findByIdAndRemove(req.params.id, function (err) {
