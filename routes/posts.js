@@ -85,7 +85,16 @@ router.post('/url/image', function (req, res) {
   })
 })
 
-
+// EDIT
+router.get('/:id/edit', function (req, res) {
+  Post.findById(req.params.id, function (err, editPost) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.render('posts/edit', { post: editPost })
+    }
+  })
+})
 
 // DESTROY
 router.delete('/:id', function (req, res) {
