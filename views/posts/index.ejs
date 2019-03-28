@@ -1,16 +1,17 @@
 <%include ../partials/header%>
-    <div class="ui three column grid">
-        <div class="four wide column"></div>
-        <div class="eight wide column">
+<div class="ui container">
+    <div class="ui one column grid">
+        <div class="six wide column"></div>
+        <div class="four wide column">
             <div class="ui two item menu">
                 <a class="item" id="text-post-btn"><i class="pencil alternate icon"></i></a>
                 <a class="item" id="image-post-btn"><i class="image icon"></i></a>
             </div>
         </div>
-        <div class="four wide column"></div>
+        <div class="six wide column"></div>
         <% posts.reverse().forEach(function(post){ %>
-            <div class="four wide column"></div>
-            <div class="eight wide column">
+            <div class="one wide column"></div>
+            <div class="fourteen wide column">
                 <div class="ui fluid centered card">
                     <div class="content">
                         <div class="right floated meta">
@@ -44,9 +45,10 @@
                     </div>
                 </div>
             </div>
-            <div class="four wide column"></div>
+            <div class="one wide column"></div>
         <% }) %>
     </div>
+</div>
 
     <!-------------------------------------------- MODALS --------------------------------------->
     <!-------------------------------------------- TEXTPOST --------------------------------------->
