@@ -16,8 +16,13 @@
                     <div class="content">
                         <div class="right floated meta">
                             <form action="/posts/<%=post._id%>?_method=DELETE" method="post">
-                                <button class="ui negative basic button icon small"><i class="trash icon"></i></button>
+                                <button class="ui negative basic button icon small">
+                                    <i class="trash icon"></i>
+                                </button>
                             </form>
+                            <a href="/posts/<%=post._id%>/edit" class="ui basic button yellow icon small">
+                                <i class="edit icon"></i>
+                            </a>
                         </div>
                         <div class="right floated meta posted-time">14h</div>
                         <img class="ui avatar image" src="images/user.svg"> Andry
@@ -94,9 +99,7 @@
             </div>
         </div>
     </div>
-    
     <!-------------------------------------------- IMGUPLOAD --------------------------------------->
-    
     <div class="ui modal" id="image-post-load">
         <div class="header">Load image</div>
         <div class="content">
@@ -105,7 +108,7 @@
                     <div class="field">
                         <label>Upload image</label>
                         <div class="ui left icon input">
-                            <input type="file" multiple accept="image/*" name="image" required>
+                            <input type="file" accept="image/*" name="image" required>
                             <i class="user icon"></i>
                         </div>
                     </div>

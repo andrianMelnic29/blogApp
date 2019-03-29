@@ -1,0 +1,37 @@
+<%include ../partials/header%>
+<div class="ui container">
+
+    <div class="ui three column grid">
+        <div class="four wide column"></div>
+        <div class="eight wide column">
+        <div class="content">
+            <form action="/posts/<%=post._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="ui form">
+                    <div class="field img-url">
+                        <div class="ui rounded image post-image">
+                            <img class="ui fluid rounded image" data-src="/<%=post.image%>" alt="" srcset="" id="edit-post-img">
+                        </div>
+                        <div class="field input" id="edit-post-upload">
+                            <label>Upload image</label>
+                            <div class="ui left icon input">
+                                <input type="file" accept="image/*" name="image" value='<%=post.image%>' >
+                                <i class="user icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field input violet">
+                        <input type="text" name="postTitle" value="<%=post.title%>">
+                    </div>
+                    <div class="field input violet">
+                        <textarea name="postBody" ><%=post.body%></textarea>
+                    </div>
+                    <button class="ui violet big basic button">Confirm</button>
+                </div>
+            </form>
+        </div>
+        </div>
+        <div class="four wide column"></div>
+    </div>
+</div>
+    <script src="/javascripts/edit_scripts.js"></script>
+<%include ../partials/footer%>

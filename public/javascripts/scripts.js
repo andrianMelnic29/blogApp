@@ -18,4 +18,5 @@ $(document).ready(function () {
       transition: 'fade in',
       duration: 1000
     })
+
 })
