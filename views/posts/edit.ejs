@@ -1,4 +1,6 @@
 <%include ../partials/header%>
+<div class="ui container">
+
     <div class="ui three column grid">
         <div class="four wide column"></div>
         <div class="eight wide column">
@@ -7,7 +9,7 @@
                 <div class="ui form">
                     <div class="field img-url">
                         <div class="ui rounded image post-image">
-                            <img class="ui fluid rounded image" data-src="<%=post.image%>" alt="" srcset="" id="edit-post-img">
+                            <img class="ui fluid rounded image" data-src="/<%=post.image%>" alt="" srcset="" id="edit-post-img">
                         </div>
                         <div class="field input" id="edit-post-upload">
                             <label>Upload image</label>
@@ -30,5 +32,6 @@
         </div>
         <div class="four wide column"></div>
     </div>
-    <script src="javascripts/edit_scripts.js"></script>
+</div>
+    <script src="/javascripts/edit_scripts.js"></script>
 <%include ../partials/footer%>
