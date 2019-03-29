@@ -86,18 +86,31 @@ router.post('/url/image', function (req, res) {
 })
 
 // EDIT
-router.get('/:id/edit', function (req, res) {
-  Post.findById(req.params.id, function (err, editPost) {
+router.get('/:post_id/edit', function (req, res) {
+  Post.findById(req.params.post_id, function (err, editPost) {
     if (err) {
       console.log(err)
     } else {
+      console.log(editPost)
       res.render('posts/edit', { post: editPost })
     }
   })
 })
 
+// UPDATE
+router.put('/:post_id', function (req, res) {
+  Post.findByIdAndUpdate(req.params.id, req.body.post,
+    function (err, editedPost) {
+      if (err) {
+        console.log(err)
+        res.redirect('/posts')
+      } else {
+        res.redirect('/posts')
+      }
+    })
+})
 // DESTROY
-router.delete('/:id', function (req, res) {
+router.delete('/:post_id', function (req, res) {
   Post.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       console.log(err)

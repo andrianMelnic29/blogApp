@@ -19,11 +19,4 @@ $(document).ready(function () {
       duration: 1000
     })
 
-  // $('#edit-btn').click(function () {
-  //   if ($(".post-image img[data-src = '']")) {
-  //     $('#text-edit-modal').modal('show')
-  //   } else {
-  //     $('#img-edit-modal').modal('show')
-  //   }
-  // })
 })
