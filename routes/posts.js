@@ -47,10 +47,8 @@ router.post('/text', function (req, res) {
   var title = req.body.postTitle
   var body = req.body.postBody
   var newPost = { title: title, body: body }
-  console.log(newPost)
   Post.create(newPost, function (err, createdPost) {
     if (err) {
-      console.log(createdPost)
       console.log(err)
     } else {
       res.redirect('/posts')
@@ -86,32 +84,65 @@ router.post('/url/image', function (req, res) {
 })
 
 // EDIT
-router.get('/:post_id/edit', function (req, res) {
-  Post.findById(req.params.post_id, function (err, editPost) {
+router.get('/:id/edit', function (req, res) {
+  Post.findById(req.params.id, function (err, editPost) {
     if (err) {
       console.log(err)
     } else {
-      console.log(editPost)
       res.render('posts/edit', { post: editPost })
     }
   })
 })
-
+function createImagePost (img, title, body) {
+  var post = { image: img, title: title, body: body }
+  return post
+}
+function createPost (title, body) {
+  var post = { title: title, body: body }
+  return post
+}
+function checkImageInputs (imageURL, imageFile) {
+  var status = false
+  if (imageURL !== '') {
+    console.log('imageURL: ' + imageURL)
+    status = true
+    var data = imageURL
+  } else if (imageFile !== undefined) {
+    console.log('imageUpload: ' + imageFile.path)
+    status = true
+    var data = imageFile.path
+  }
+  var response = {
+    status: status,
+    data: data
+  }
+  return response
+}
 // UPDATE
-router.put('/:post_id', function (req, res) {
-  Post.findByIdAndUpdate(req.params.id, req.body.post,
+router.put('/:id', upload.single('imageUpload'), function (req, res) {
+  var response = checkImageInputs(req.body.imageURL, req.file)
+  console.log(response)
+  var updatedPost
+  if (response.status) {
+    console.log('Image edited')
+    updatedPost = createImagePost(response.data, req.body.postTitle, req.body.postBody)
+    console.log(updatedPost)
+  } else {
+    console.log('Only text edited')
+    updatedPost = createPost(req.body.postTitle, req.body.postBody)
+  }
+  Post.findByIdAndUpdate(req.params.id, updatedPost,
     function (err, editedPost) {
       if (err) {
-        console.log(err)
-        res.redirect('/posts')
+        // console.log(err)
       } else {
         res.redirect('/posts')
       }
     })
 })
 // DESTROY
-router.delete('/:post_id', function (req, res) {
-  Post.findByIdAndRemove(req.params.id, function (err) {
+router.delete('/:id', function (req, res) {
+  Post.findByIdAndDelete(req.params.id, function (err) {
     if (err) {
       console.log(err)
     } else {
