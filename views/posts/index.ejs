@@ -24,7 +24,7 @@
                                 <i class="edit icon"></i>
                             </a>
                         </div>
-                        <div class="right floated meta posted-time">14h</div>
+                        <div class="right floated meta posted-time"><%=moment(post.date).fromNow()%></div>
                         <img class="ui avatar image" src="/images/user.svg"> Andry
                     </div>
                     <div class="ui rounded image post-image">
@@ -36,8 +36,14 @@
                         </a>
                         <p><%-  post.body.substring(0, 100)   %>...</p>
                         <span class="right floated">
-                            <i class="heart outline like icon"></i>
-                            17 likes
+                            <div class="ui icon" onclick="actionOnPost()">
+                                <a class="item" id="like-btn">
+                                    <i class="thumbs up outline icon violet" id="like-btn-icon"></i>
+                                </a>
+                            </div>
+                            <label for="#like-btn" id="likes-counter">
+                                <%= post.likes%>
+                            </label>
                         </span>
                         <i class="comment icon"></i>
                         3 comments

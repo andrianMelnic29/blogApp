@@ -5,12 +5,11 @@
         <div class="fourteen wide column">
             <div class="content">
                 <div class="ui rounded image post-image">
-                    <img class="ui fluid rounded image" 
-                            data-src="<%=post.image%>" 
-                            alt="" 
+                    <img class="ui fluid rounded image"
+                            data-src="<%=post.image%>"
+                            alt=""
                             srcset=""
                             id='edit-post-img'>
-                        
                 </div>
                 <form action="/posts/<%=post._id%>?_method=PUT" method="post" enctype="multipart/form-data">
                     <div class="ui form">

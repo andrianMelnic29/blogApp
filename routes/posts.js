@@ -2,6 +2,8 @@ var express = require('express')
 
 var router = express.Router()
 
+var moment = require('moment')
+
 var multer = require('multer')
 
 var storage = multer.diskStorage({
@@ -46,7 +48,8 @@ router.get('/new', function (req, res) {
 router.post('/text', function (req, res) {
   var title = req.body.postTitle
   var body = req.body.postBody
-  var newPost = { title: title, body: body }
+  var date = moment().format()
+  var newPost = { title: title, body: body, date: date }
   Post.create(newPost, function (err, createdPost) {
     if (err) {
       console.log(err)
@@ -60,7 +63,8 @@ router.post('/upload/image', upload.single('image'), function (req, res) {
   var image = req.file.path
   var title = req.body.postTitle
   var body = req.body.postBody
-  var newPost = { title: title, body: body, image: image }
+  var date = moment().format()
+  var newPost = { title: title, body: body, image: image, date: date }
   Post.create(newPost, function (err, createdPost) {
     if (err) {
       console.log('Something went wrong ooooops: ' + err)
@@ -73,7 +77,8 @@ router.post('/url/image', function (req, res) {
   var image = req.body.image
   var title = req.body.postTitle
   var body = req.body.postBody
-  var newPost = { title: title, body: body, image: image }
+  var date = moment().format()
+  var newPost = { title: title, body: body, image: image, date: date }
   Post.create(newPost, function (err, createdPost) {
     if (err) {
       console.log('Something went wrong ooooops: ' + err)
@@ -103,14 +108,15 @@ function createPost (title, body) {
 }
 function checkImageInputs (imageURL, imageFile) {
   var status = false
+  var data = null
   if (imageURL !== '') {
     console.log('imageURL: ' + imageURL)
     status = true
-    var data = imageURL
+    data = imageURL
   } else if (imageFile !== undefined) {
     console.log('imageUpload: ' + imageFile.path)
     status = true
-    var data = imageFile.path
+    data = imageFile.path
   }
   var response = {
     status: status,
@@ -131,7 +137,7 @@ router.put('/:id', upload.single('imageUpload'), function (req, res) {
     console.log('Only text edited')
     updatedPost = createPost(req.body.postTitle, req.body.postBody)
   }
-  Post.findByIdAndUpdate(req.params.id, updatedPost,
+  Post.findOneAndUpdate(req.params.id, updatedPost,
     function (err, editedPost) {
       if (err) {
         // console.log(err)
@@ -142,7 +148,7 @@ router.put('/:id', upload.single('imageUpload'), function (req, res) {
 })
 // DESTROY
 router.delete('/:id', function (req, res) {
-  Post.findByIdAndDelete(req.params.id, function (err) {
+  Post.findOneAndDelete(req.params.id, function (err) {
     if (err) {
       console.log(err)
     } else {
@@ -151,4 +157,16 @@ router.delete('/:id', function (req, res) {
   })
 })
 
+// LIKES
+router.post('/:id/like', function (req, res) {
+  Post.findOneAndUpdate(req.params.id, {
+    $inc: { 'likes': 1 }
+  }, function (err, editedPost) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('liked post: ' + editedPost.likes)
+    }
+  })
+})
 module.exports = router
