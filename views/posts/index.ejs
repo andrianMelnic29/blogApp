@@ -36,13 +36,13 @@
                         </a>
                         <p><%-  post.body.substring(0, 100)   %>...</p>
                         <span class="right floated">
-                            <div class="ui icon" onclick="actionOnPost()">
+                            <div class="ui icon" onclick="likeRequest('<%=post._id%>')">
                                 <a class="item" id="like-btn">
-                                    <i class="thumbs up outline icon violet" id="like-btn-icon"></i>
+                                    <i class="heart outline icon red" id="<%=post._id%>-like-btn-icon"></i>
                                 </a>
                             </div>
-                            <label for="#like-btn" id="likes-counter">
-                                <%= post.likes%>
+                            <label for="#like-btn" id="<%=post._id%>-likes-counter">
+                                <%=post.likes%>
                             </label>
                         </span>
                         <i class="comment icon"></i>
@@ -50,7 +50,6 @@
                     </div>
                     <div class="extra content">
                         <div class="ui large transparent left icon input">
-                            <i class="heart outline icon"></i>
                             <input type="text" placeholder="Add Comment...">
                         </div>
                     </div>
@@ -151,4 +150,32 @@
             </form>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script>
+        function addLike(post_id){
+            axios.post('/posts/'+ post_id + '/like')
+            .then(function(response){
+                document.getElementById(post_id + '-likes-counter').innerHTML = response.data.likes
+                document.getElementById(post_id + '-like-btn-icon').classList.remove('outline')
+            })
+            .then(function(error){
+            })
+        }
+        function removeLike(post_id){
+            axios.post('/posts/'+ post_id + '/dislike')
+            .then(function(response){
+                document.getElementById(post_id + '-likes-counter').innerHTML = response.data.likes
+                document.getElementById(post_id + '-like-btn-icon').classList.add('outline')
+            })
+            .then(function(error){
+            })
+        }
+        function likeRequest(post_id){
+            if(document.getElementById(post_id + '-like-btn-icon').classList.contains('outline')){
+                addLike(post_id)
+            } else {
+                removeLike(post_id)
+            }
+        }
+    </script>
 <%include ../partials/footer%>

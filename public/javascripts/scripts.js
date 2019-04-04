@@ -1,12 +1,12 @@
 $(document).ready(function () {
-  $('#like-btn').click(function () {
-    // if ($('#like-btn-ico').hasClass('up')) {
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: 'posts/<%=post._id%>/like'
-    //   })
-    console.log(<%=post._id %>)
-  })
+  // $('#like-btn').click(function () {
+  //   // if ($('#like-btn-ico').hasClass('up')) {
+  //   //   $.ajax({
+  //   //     type: 'POST',
+  //   //     url: 'posts/<%=post._id%>/like'
+  //   //   })
+  //   console.log(<%=post._id %>)
+  // })
   $('#text-post-btn').click(function () {
     $('#text-post-modal').modal('show')
   })

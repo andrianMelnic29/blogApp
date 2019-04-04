@@ -137,7 +137,7 @@ router.put('/:id', upload.single('imageUpload'), function (req, res) {
     console.log('Only text edited')
     updatedPost = createPost(req.body.postTitle, req.body.postBody)
   }
-  Post.findOneAndUpdate(req.params.id, updatedPost,
+  Post.findOneAndUpdate({ _id: req.params.id }, updatedPost,
     function (err, editedPost) {
       if (err) {
         // console.log(err)
@@ -148,10 +148,11 @@ router.put('/:id', upload.single('imageUpload'), function (req, res) {
 })
 // DESTROY
 router.delete('/:id', function (req, res) {
-  Post.findOneAndDelete(req.params.id, function (err) {
+  Post.findOneAndDelete({ _id: req.params.id }, function (err) {
     if (err) {
       console.log(err)
     } else {
+      console.log('deleted id:' + req.params.id)
       res.redirect('/posts')
     }
   })
@@ -159,13 +160,26 @@ router.delete('/:id', function (req, res) {
 
 // LIKES
 router.post('/:id/like', function (req, res) {
-  Post.findOneAndUpdate(req.params.id, {
+  Post.findOneAndUpdate({ _id: req.params.id }, {
     $inc: { 'likes': 1 }
-  }, function (err, editedPost) {
+  }, { new: true },
+  function (err, editedPost) {
     if (err) {
       console.log(err)
     } else {
-      console.log('liked post: ' + editedPost.likes)
+      res.send(editedPost)
+    }
+  })
+})
+router.post('/:id/dislike', function (req, res) {
+  Post.findOneAndUpdate({ _id: req.params.id }, {
+    $inc: { 'likes': -1 }
+  }, { new: true },
+  function (err, editedPost) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(editedPost)
     }
   })
 })
