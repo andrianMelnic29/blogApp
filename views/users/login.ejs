@@ -1,0 +1,58 @@
+<%include ../partials/header%>
+<div class="ui placeholder segment">
+  <div class="ui two column very relaxed stackable grid">
+    <div class="column">
+      <div class="ui form">
+        <div class="field">
+          <label>Username</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Username">
+            <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="ui left icon input">
+            <input type="password">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <div class="ui violet submit button">Login</div>
+      </div>
+    </div>
+    <div class="middle aligned column">
+      <div class="ui big button">
+        <i class="signup icon"></i>
+        <a href="/users/signup" class='item'>Sign up</a>
+      </div>
+    </div>
+  </div>
+  <div class="ui vertical divider">
+    Or
+  </div>
+</div>
+
+
+
+<!-- MODALS -->
+
+
+<div class="ui modal" id="text-post-modal">
+  <div class="header">Text</div>
+  <div class="content">
+    <form action="/posts/text" method="POST">
+      <div class="ui form">
+        <div class="field input">
+          <input type="text" name="postTitle" placeholder="Title">
+        </div>
+        <div class="field input">
+          <textarea name="postBody" placeholder="Text content here..."></textarea>
+        </div>
+        <div class="field">
+          <button class="ui violet big basic button">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<%include ../partials/footer%>

@@ -10,9 +10,17 @@ var path = require('path')
 
 var methodOverride = require('method-override')
 
+var passport = require('passport')
+
+var session = require('session')
+
+var flash = require('flash')
+
 app.locals.moment = require('moment')
 
 var postRoutes = require('./routes/posts')
+
+var userRoutes = require('./routes/users')
 
 // APP CONFIG
 // ============================================================
@@ -31,10 +39,11 @@ app.get('/', function (req, res) {
 })
 
 app.use('/posts', postRoutes)
+app.use('/users', userRoutes)
 
 // LISTEN
 // ============================================================
 
-app.listen(process.env.PORT, process.env.IP, function () {
-  console.log('Listening on port:' + process.env.PORT)
+app.listen(/* process.env.PORT */ 5000, process.env.IP, function () {
+  console.log('Listening on port:' + '5000')
 })
